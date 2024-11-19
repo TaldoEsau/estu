@@ -18,7 +18,6 @@
 </html> -->
 <!-- Substituímos o marcador Hiro pelo marcador personalizado -->
 
-
 <html>
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
@@ -36,13 +35,34 @@
         
         <!-- Substituímos o modelo 3D pelo vídeo -->
         <a-video 
+          id="video-player"
           position="0 0 0" 
           scale="2 1 1" 
           src="./Coringa (Joker) - Vídeo Motivacional Para Status whatsapp -.mp4"
-          rotation="-90 0 0">
+          rotation="-90 0 0"
+          autoplay="false"
+          crossorigin="anonymous">
         </a-video>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
+
+    <script>
+      // Adiciona interação para reproduzir o vídeo ao clicar
+      const videoEl = document.querySelector('#video-player');
+      
+      videoEl.addEventListener('click', () => {
+        if (videoEl.paused) {
+          videoEl.play(); // Reproduz o vídeo
+        } else {
+          videoEl.pause(); // Pausa o vídeo
+        }
+      });
+
+      // Habilita som após interação do usuário (necessário para navegadores modernos)
+      window.addEventListener('click', () => {
+        videoEl.muted = false; // Garante que o som seja ativado
+      });
+    </script>
   </body>
 </html>
